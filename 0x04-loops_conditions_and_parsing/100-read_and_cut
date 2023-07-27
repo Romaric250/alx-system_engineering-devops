@@ -3,9 +3,14 @@
 # This script reads the /etc/passwd file and displays the username,
 # user ID, and home directory path for each user
 
-while IFS=: read -r user _ uid _ _ home _
-do
-    echo "Username: $user"
-    echo "User ID: $uid"
-    echo "Home directory: $home"
-done < /etc/passwd 
+
+while read -r line; do
+    fields="($line)"
+
+    username=${fields[0]}
+    uid=${fields[2]}
+    home_dir=${fields[5]}
+
+    echo "$username:$uid:$home_dir"
+done < /etc/passwd
+ 
