@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # This script displays the contents of the file `/etc/passwd`.
 # It only displays the username, user id
-myfile="/etc/passwd"
+
+file_u="/etc/passwd"
 while IFS= read -r line
 do
     echo "$line" | cut -d":" -f1,3,6
-done < "$myfile"
+done < "$file_u"
