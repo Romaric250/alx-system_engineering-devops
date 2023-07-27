@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# This script displays the content of /etc/passwd using a while loop and IFS
+
+# Set the field separator to ":" to parse the /etc/passwd file
+IFS=":"
+
+# Read each line of the /etc/passwd file and display the user information
+while read -r user password uid gid info home shell
+do
+	export uid
+    # Extract the username from the user field
+    username=$(echo "$user" | cut -d'/' -f3)
+
+    # Extract the group id from the gid field
+    groupid=$(echo "$gid" | cut -d'/' -f3)
+
+    # Extract the command/shell from the shell field
+    command=$(echo "$shell" | cut -d'/' -f3)
+
+    # Extract the password from the password field
+    password=$(echo "$password" | cut -d'$' -f2)
+
+    # Display the user information
+    echo "The user $username is part of the $groupid gang, lives in $home, and rides $command."
+    echo "User ID's place is protected by the passcode $password, more info about the user here: $info"
+done < /etc/passwd
