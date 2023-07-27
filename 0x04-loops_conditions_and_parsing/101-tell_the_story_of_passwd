@@ -1,27 +1,17 @@
 #!/usr/bin/env bash
-
-# This script displays the content of /etc/passwd using a while loop and IFS
-
-# Set the field separator to ":" to parse the /etc/passwd file
-IFS=":"
-
-# Read each line of the /etc/passwd file and display the user information
-while read -r user password uid gid info home shell
+#This script tells a story based on the contents of the `/etc/passwd` file
+file_u="/etc/passwd"
+fls1=""
+fls2=""
+fls3=""
+while IFS= read -r line
 do
-	export uid
-    # Extract the username from the user field
-    username=$(echo "$user" | cut -d'/' -f3)
-
-    # Extract the group id from the gid field
-    groupid=$(echo "$gid" | cut -d'/' -f3)
-
-    # Extract the command/shell from the shell field
-    command=$(echo "$shell" | cut -d'/' -f3)
-
-    # Extract the password from the password field
-    password=$(echo "$password" | cut -d'$' -f2)
-
-    # Display the user information
-    echo "The user $username is part of the $groupid gang, lives in $home, and rides $command."
-    echo "User ID's place is protected by the passcode $password, more info about the user here: $info"
-done < /etc/passwd
+    fls1="$(echo "$line" | cut -d":" -f1)"
+    fls2="$(echo "$line" | cut -d":" -f4)"
+    fls3="$(echo "$line" | cut -d":" -f6)"
+    fls4="$(echo "$line" | cut -d":" -f7)"
+    fls5="$(echo "$line" | cut -d":" -f3)"
+    fls6="$(echo "$line" | cut -d":" -f2)"
+    fls7="$(echo "$line" | cut -d":" -f5)"
+    echo "The user ${fls1} is part of the ${fls2} gang, lives in ${fls3} and rides ${fls4}. ${fls5}'s place is protected by the passcode ${fls6}, more info about the user here: ${fls7}"
+done < "$file_u"
