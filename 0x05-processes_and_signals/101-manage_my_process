@@ -8,13 +8,4 @@ case $1 in
 	id=$(cat /var/run/my_process.pid)
 	kill -s SIGSTOP "$id"
 	rm /var/run/my_process.pid
-	./manage_my_process & > /var/run/my_process.pid
-	echo 'manage_my_process restarted';;
-    "stop")
-	id=$(cat /var/run/my_process.pid)
-	kill -s SIGSTOP "$id"
-	rm /var/run/my_process.pid
-	echo 'manage_my_process stopped';;
-    *)
-	echo 'Usage: manage_my_process {start|stop|restart}';;
-esac
+	
