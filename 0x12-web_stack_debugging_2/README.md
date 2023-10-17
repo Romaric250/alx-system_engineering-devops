@@ -1,1 +1,1 @@
-solutions for webstack debugging 2
+solutions for the  webstack debugging 2 project
