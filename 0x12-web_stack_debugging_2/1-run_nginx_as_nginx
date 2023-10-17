@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# this script Fixes a web server to run Nginx and listens on port 8080
+
+# set a user in the config
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
+# replace port 80 with 8080 
+sed -i "s/80/8080/g" /etc/nginx/sites-available/default
+# give permissions 
+chmod 644 /etc/nginx/nginx.conf
+# kill the apche process if running
+pkill apache2
+# start the nginx service
+sudo -u nginx service nginx start
