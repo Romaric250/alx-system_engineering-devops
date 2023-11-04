@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# The script run the 'whoami'
+
+sudo -u "$1" whoami
