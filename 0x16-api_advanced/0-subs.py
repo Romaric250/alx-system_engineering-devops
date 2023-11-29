@@ -1,3 +1,8 @@
+#!/usr/bin/python3
+"""
+this api gives the number of subscribers for a given subreddit
+"""
+
 from requests import get
 
 
